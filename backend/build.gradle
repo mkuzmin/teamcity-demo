@@ -9,7 +9,7 @@ ext {
 
 jar {
     baseName = 'todo'
-    version = buildNumber
+//    version = buildNumber
 }
 
 repositories {

@@ -25,3 +25,5 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator"
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
+
+//apply from: "docker.gradle"

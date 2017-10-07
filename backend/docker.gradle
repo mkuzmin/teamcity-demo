@@ -1,11 +1,21 @@
-plugins {
-    id 'com.bmuschko.docker-remote-api' version '3.0.5'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.bmuschko:gradle-docker-plugin:3.2.0"
+    }
 }
+
+apply plugin: "com.bmuschko.docker-remote-api"
+
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
 
 ext {
-    image = 'docker-registry.labs.intellij.net/mkuzmin-demo/backend'
+    image = 'mkuzmin/todo-backend'
     buildNumber = System.env.BUILD_NUMBER ?: 'dev'
 }
 
@@ -13,9 +23,6 @@ repositories {
     jcenter()
 }
 
-docker {
-    url = org.gradle.internal.os.OperatingSystem.current().isWindows() ? 'tcp://127.0.0.1:2375' : 'unix:///var/run/docker.sock'
-}
 task dockerfile(type: Copy) {
     from 'Dockerfile'
     into "$buildDir/libs/"

@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '1.4.3.RELEASE'
+}
+
+ext {
+    buildNumber = System.env.BUILD_NUMBER ?: 'dev'
+}
+
+jar {
+    baseName = 'todo'
+    version = buildNumber
+}
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}

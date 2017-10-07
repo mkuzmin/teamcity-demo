@@ -7,12 +7,16 @@ services:
     volumes:
       - ./data:/data/teamcity_server/datadir
   agent1:
-    image: jetbrains/teamcity-minimal-agent:2017.1.4
+    build:
+      context: .
+      dockerfile: teamcity-agent.Dockerfile
     environment:
       - SERVER_URL=http://server:8111
       - AGENT_NAME=agent1
-  agent2:
-    image: jetbrains/teamcity-agent:2017.1.4
-    environment:
-      - SERVER_URL=http://server:8111
-      - AGENT_NAME=agent2
+    volumes:
+#      - /opt/buildagent/work/:/opt/buildagent/work/
+#      - /opt/buildagent/temp/:/opt/buildagent/temp/
+#      - /opt/buildagent/system/:/opt/buildagent/system/
+#      - /opt/buildagent/tools/:/opt/buildagent/tools/
+#      - /opt/buildagent/plugins/:/opt/buildagent/plugins/
+      - /var/run/docker.sock:/var/run/docker.sock

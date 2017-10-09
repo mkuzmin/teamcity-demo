@@ -1,0 +1,41 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:3.2.11
+    volumes:
+      - mongodb:/data/db/
+    ports:
+      - "27017:27017"
+#    healthcheck:
+#      test: "[ `echo 'db.stats().ok' | mongo --quiet` == '1' ]"
+#      retries': 10
+#      timeout: 2s
+#      interval: 5s
+
+  backend:
+    depends_on:
+      - mongodb
+    image: mkuzmin/todo-backend:${BACKEND_VERSION}
+    environment:
+      SERVER_CONTEXT_PATH: /rest
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/people
+    ports:
+      - "8080:8080"
+
+  frontend:
+    depends_on:
+      - backend
+    image: mkuzmin/todo-frontend:${FRONTEND_VERSION}
+    ports:
+      - "80:80"
+
+  chrome:
+    depends_on:
+      - frontend
+    image: selenium/standalone-chrome-debug:3.0.1-barium
+    ports:
+      - "4444:4444"
+      - "5910:5900"
+
+volumes:
+  mongodb:

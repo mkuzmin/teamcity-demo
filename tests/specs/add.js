@@ -8,7 +8,7 @@ describe('Checklist', function() {
         var count = browser.elements('span.description').value.length;
         var value = require("uuid").v4();
         browser.setValue('#newItem', value);
-        browser.submitForm('form');
+        browser.submitForm('#checklist');
 
         browser.waitUntil(function () {
             var l = browser.elements('span.description').value.length;

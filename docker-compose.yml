@@ -10,7 +10,7 @@ services:
       - mongodb
     image: mkuzmin/todo-backend:${BACKEND_VERSION}
     environment:
-      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/people
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb:27017/tasks
     ports:
       - "8080:8080"
 

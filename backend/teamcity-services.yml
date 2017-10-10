@@ -6,11 +6,6 @@ services:
       - mongodb:/data/db/
     ports:
       - "27017:27017"
-#    healthcheck:
-#      test: "[ `echo 'db.stats().ok' | mongo --quiet` == '1' ]"
-#      retries': 10
-#      timeout: 2s
-#      interval: 5s
 
 volumes:
   mongodb:

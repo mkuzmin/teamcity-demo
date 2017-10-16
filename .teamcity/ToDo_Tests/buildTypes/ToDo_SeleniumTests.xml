@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="ab505c40-3f83-4994-829f-6f2ef8b9fe9f" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/10.0/project-config.xsd">
+  <name>Selenium Tests</name>
+  <description />
+  <settings>
+    <options>
+      <option name="artifactRules" value="errorShots =&gt; errorShots.zip" />
+    </options>
+    <parameters>
+      <param name="env.BACKEND_VERSION" value="%dep.ToDo_Backend_DockerImage.build.number%" />
+      <param name="env.FRONTEND_VERSION" value="%dep.ToDo_Frontend_BuildDockerImage.build.number%" />
+    </parameters>
+    <build-runners>
+      <runner id="RUNNER_7" name="" type="Docker Compose">
+        <parameters>
+          <param name="docker-compose.file" value="teamcity-services.yml" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_8" name="" type="simpleRunner">
+        <parameters>
+          <param name="plugin.docker.imageId" value="node:6.9.1" />
+          <param name="script.content"><![CDATA[npm install
+rm -f errorShots/*
+./node_modules/.bin/wdio --host chrome --reporters teamcity]]></param>
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="ToDo_Todo">
+        <checkout-rule rule="+:tests =&gt; ." />
+      </vcs-entry-ref>
+    </vcs-settings>
+    <requirements />
+    <build-triggers>
+      <build-trigger id="vcsTrigger" type="vcsTrigger">
+        <parameters>
+          <param name="enableQueueOptimization" value="true" />
+          <param name="quietPeriodMode" value="DO_NOT_USE" />
+          <param name="watchChangesInDependencies" value="true" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
+    <artifact-dependencies>
+      <dependency id="ARTIFACT_DEPENDENCY_2" sourceBuildTypeId="ToDo_Backend_DockerImage" cleanDestination="false">
+        <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
+        <artifact sourcePath=".teamcity/properties/build.finish.properties.gz =&gt; a/" />
+      </dependency>
+      <dependency id="ARTIFACT_DEPENDENCY_3" sourceBuildTypeId="ToDo_Frontend_BuildDockerImage" cleanDestination="false">
+        <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
+        <artifact sourcePath=".teamcity/properties/build.finish.properties.gz =&gt; b/" />
+      </dependency>
+    </artifact-dependencies>
+    <dependencies>
+      <depend-on sourceBuildTypeId="ToDo_Backend_DockerImage">
+        <options>
+          <option name="run-build-if-dependency-failed" value="CANCEL" />
+          <option name="run-build-if-dependency-failed-to-start" value="CANCEL" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+      <depend-on sourceBuildTypeId="ToDo_Frontend_BuildDockerImage">
+        <options>
+          <option name="run-build-if-dependency-failed" value="CANCEL" />
+          <option name="run-build-if-dependency-failed-to-start" value="CANCEL" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

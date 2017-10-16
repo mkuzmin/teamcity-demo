@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="ToDo" uuid="5c8a753c-d353-4f3d-8deb-6f03df395961" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/10.0/project-config.xsd">
+  <name>Frontend</name>
+  <parameters />
+  <cleanup />
+</project>
+

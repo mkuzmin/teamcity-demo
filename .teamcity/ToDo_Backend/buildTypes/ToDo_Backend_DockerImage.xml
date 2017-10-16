@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="b83d2fae-4d72-449f-b614-83fc5d8d148e" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/10.0/project-config.xsd">
+  <name>Docker Image</name>
+  <description />
+  <settings>
+    <options>
+      <option name="buildNumberPattern" value="%dep.ToDo_Backend_Build.build.number%" />
+    </options>
+    <parameters />
+    <build-runners>
+      <runner id="RUNNER_2" name="" type="Docker Build">
+        <parameters>
+          <param name="docker.image.namesAndTags" value="mkuzmin/todo-backend:%build.number%" />
+          <param name="dockerfile.path" value="backend/Dockerfile" />
+          <param name="dockerfile.source" value="PATH" />
+          <param name="teamcity.step.mode" value="default" />
+        </parameters>
+      </runner>
+      <runner id="RUNNER_3" name="Docker Push" type="simpleRunner">
+        <parameters>
+          <param name="script.content" value="docker push mkuzmin/todo-backend:%build.number%" />
+          <param name="teamcity.step.mode" value="default" />
+          <param name="use.custom.script" value="true" />
+        </parameters>
+      </runner>
+    </build-runners>
+    <vcs-settings>
+      <vcs-entry-ref root-id="ToDo_Todo">
+        <checkout-rule rule="+:backend/Dockerfile" />
+      </vcs-entry-ref>
+    </vcs-settings>
+    <requirements />
+    <build-triggers />
+    <build-extensions>
+      <extension id="DockerSupport" type="DockerSupport">
+        <parameters>
+          <param name="cleanupPushed" value="true" />
+          <param name="login2registry" value="PROJECT_EXT_2" />
+          <param name="loginCheckbox" value="on" />
+        </parameters>
+      </extension>
+    </build-extensions>
+    <artifact-dependencies>
+      <dependency id="ARTIFACT_DEPENDENCY_1" sourceBuildTypeId="ToDo_Backend_Build" cleanDestination="false">
+        <revisionRule name="sameChainOrLastFinished" revision="latest.sameChainOrLastFinished" />
+        <artifact sourcePath="todo.jar =&gt; backend/build/libs/" />
+      </dependency>
+    </artifact-dependencies>
+    <dependencies>
+      <depend-on sourceBuildTypeId="ToDo_Backend_Build">
+        <options>
+          <option name="run-build-if-dependency-failed" value="CANCEL" />
+          <option name="run-build-if-dependency-failed-to-start" value="CANCEL" />
+          <option name="take-started-build-with-same-revisions" value="true" />
+          <option name="take-successful-builds-only" value="true" />
+        </options>
+      </depend-on>
+    </dependencies>
+    <cleanup />
+  </settings>
+</build-type>
+

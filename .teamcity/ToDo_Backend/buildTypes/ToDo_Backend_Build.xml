@@ -10,7 +10,7 @@
     <build-runners>
       <runner id="RUNNER_1" name="" type="gradle-runner">
         <parameters>
-          <param name="plugin.docker.imageId" value="openjdk:8u131-jdk-alpine" />
+          <param name="plugin.docker.imageId" value="registlopenjdk:8u141-jdk-alpine" />
           <param name="plugin.docker.run.parameters" value="-v gradle:/root/.gradle/" />
           <param name="teamcity.coverage.emma.include.source" value="true" />
           <param name="teamcity.coverage.emma.instr.parameters" value="-ix -*Test*" />

@@ -12,6 +12,15 @@
         <param name="showChanges" value="true" />
       </parameters>
     </extension>
+    <extension id="PROJECT_EXT_1087" type="OAuthProvider">
+      <parameters>
+        <param name="displayName" value="Docker Registry" />
+        <param name="providerType" value="Docker" />
+        <param name="repositoryUrl" value="https://docker.io" />
+        <param name="secure:userPass" value="credentialsJSON:278ee196-b1e6-4894-8c95-64f0370d0a5b" />
+        <param name="userName" value="mkuzmin" />
+      </parameters>
+    </extension>
   </project-extensions>
   <cleanup />
 </project>

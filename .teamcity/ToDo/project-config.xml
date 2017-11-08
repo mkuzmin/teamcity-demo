@@ -23,5 +23,6 @@
     </extension>
   </project-extensions>
   <cleanup />
+  <subprojectsOrder order="ToDo_Backend,ToDo_Frontend,ToDo_Tests,ToDo_Deployment" />
 </project>
 

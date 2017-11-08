@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="ab505c40-3f83-4994-829f-6f2ef8b9fe9f" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/10.0/project-config.xsd">
+<build-type xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="ab505c40-3f83-4994-829f-6f2ef8b9fe9f" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2017.2/project-config.xsd">
   <name>Selenium Tests</name>
   <description />
   <settings>
@@ -39,6 +39,7 @@ rm -f errorShots/*
         <parameters>
           <param name="enableQueueOptimization" value="true" />
           <param name="quietPeriodMode" value="DO_NOT_USE" />
+          <param name="triggerRules" value="-:.teamcity/*" />
           <param name="watchChangesInDependencies" value="true" />
         </parameters>
       </build-trigger>

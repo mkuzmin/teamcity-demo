@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" uuid="cdba485c-baa7-4d0e-8631-83cdf8afc886" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/10.0/project-config.xsd">
-  <name>To-Do</name>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="Sandbox_MichaelKuzmin" uuid="665c94ab-9214-45be-8ddd-93fd68779f8e" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2017.2/project-config.xsd">
+  <name>ToDo</name>
   <parameters />
   <project-extensions>
-    <extension id="PROJECT_EXT_2" type="OAuthProvider">
-      <parameters>
-        <param name="displayName" value="Docker Hub" />
-        <param name="providerType" value="Docker" />
-        <param name="repositoryUrl" value="https://docker.io" />
-        <param name="secure:userPass" value="credentialsJSON:b838eaa7-ece2-42f1-8cfc-564e04917b37" />
-        <param name="userName" value="mkuzmin" />
-      </parameters>
-    </extension>
-    <extension id="PROJECT_EXT_3" type="CloudImage">
-      <parameters>
-        <param name="agent_pool_id" value="1" />
-        <param name="dockerImage" value="jetbrains/teamcity-minimal-agent:2017.1.4" />
-        <param name="imageDescription" value="Run container: jetbrains/teamcity-minimal-agent:2017.1.4" />
-        <param name="imageInstanceLimit" value="2" />
-        <param name="podTemplateMode" value="simple" />
-        <param name="profileId" value="kube-1" />
-        <param name="source-id" value="0" />
-      </parameters>
-    </extension>
-    <extension id="PROJECT_EXT_4" type="versionedSettings">
+    <extension id="PROJECT_EXT_1086" type="versionedSettings">
       <parameters>
         <param name="buildSettings" value="PREFER_VCS" />
         <param name="credentialsStorageType" value="credentialsJSON" />
@@ -32,60 +12,7 @@
         <param name="showChanges" value="true" />
       </parameters>
     </extension>
-    <extension id="kube-1" type="CloudProfile">
-      <parameters>
-        <param name="agentPushPreset" value="" />
-        <param name="api-server-url" value="https://192.168.99.100:8443" />
-        <param name="authStrategy" value="unauthorized" />
-        <param name="clientCertData"><![CDATA[-----BEGIN CERTIFICATE-----
-MIIDADCCAeigAwIBAgIBAjANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
-a3ViZUNBMB4XDTE3MTAwOTIzMDAyMloXDTE4MTAwOTIzMDAyMlowMTEXMBUGA1UE
-ChMOc3lzdGVtOm1hc3RlcnMxFjAUBgNVBAMTDW1pbmlrdWJlLXVzZXIwggEiMA0G
-CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCnX0OMUCTAaeS9iyvkqSjc5tIls+Rm
-hdwK1SJYhGLBx33Yk2f0HlF7RII/x0NC+ISWransyfkb9iyCItuQbvOhGiaCZorZ
-0PPe1q60AexCiY9VGu2hG3NmoLNHcINwlYMHpeZSctaaumlRaX1hczON7c/OK27B
-FjZkLqbBOFRHOec/rQ0Vhy6cvbw089Fy5QP97iveoCC2LZFLKQV1XfPbCdDUMlg/
-L++jyxyMR4+CKiho/Qt2GqNKtkBGGNie29PnAgu1kgPlOiw6MJGt+G7g4KycAL9I
-WFit3xE2z2WVrZorjV3bwPmayNNyGZBv0+mcD4UYts1s9bYFUMAUO9uBAgMBAAGj
-PzA9MA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUH
-AwIwDAYDVR0TAQH/BAIwADANBgkqhkiG9w0BAQsFAAOCAQEAD990kt6MXpgXhV2M
-IVeRIq7QsAKdKxVs4srM+sAi5GBOPEd8eEhGDRTH1wP3Snh+qph/TUmsSwcO/8Vj
-5S/Y+NfHECb5jRaV4g18Iy5AltISGjMvJOsHZ2Tl+otYO2pHeBZrxGloj4Wjut+l
-zNpp0XJDrqpWFOm45HS10AJCN33fuZlJFvikaRaDNCjPyXEe6/hM2hMd1iLxroKs
-KwW/mkw495ukdjIH4yJVpLGGWgPzbkLhH/BjirCsRwk18NEnZ3buClvNjD/uXrrK
-zfDLg1SCP3eHNRf1sB6N2izHEdL/xlFO2nUI2d0xxjbKSVZvpvOiCrMSiKEGq3X3
-IKSTdg==
------END CERTIFICATE-----]]></param>
-        <param name="cloud-code" value="kube" />
-        <param name="description" value="" />
-        <param name="enabled" value="true" />
-        <param name="kubernetes-namespace" value="default" />
-        <param name="name" value="kubernetes" />
-        <param name="next-hour" value="" />
-        <param name="podTemplateMode" value="notSelected" />
-        <param name="profileId" value="kube-1" />
-        <param name="profileInstanceLimit" value="" />
-        <param name="secure:authToken" value="" />
-        <param name="secure:password" value="" />
-        <param name="source_images_json" value="[{&quot;podTemplateMode&quot;:&quot;simple&quot;,&quot;dockerImage&quot;:&quot;jetbrains/teamcity-minimal-agent:2017.1.4&quot;,&quot;imageInstanceLimit&quot;:&quot;2&quot;,&quot;profileId&quot;:&quot;kube-1&quot;,&quot;imageDescription&quot;:&quot;Run container: jetbrains/teamcity-minimal-agent:2017.1.4&quot;,&quot;agent_pool_id&quot;:&quot;1&quot;,&quot;source-id&quot;:&quot;0&quot;}]" />
-        <param name="system.cloud.profile_id" value="kube-1" />
-        <param name="terminate-idle-time" value="1000" />
-        <param name="total-work-time" value="" />
-        <param name="username" value="" />
-      </parameters>
-    </extension>
   </project-extensions>
-  <cleanup>
-    <policy type="daysAndBuilds" cleanup-level="HISTORY_ENTRY">
-      <parameters>
-        <param name="keepBuilds.count" value="3" />
-        <param name="keepDays.count" value="7" />
-      </parameters>
-    </policy>
-    <options>
-      <option name="preventDependenciesArtifactsFromCleanup" value="true" />
-    </options>
-  </cleanup>
-  <subprojectsOrder order="ToDo_Backend,ToDo_Frontend,ToDo_Tests,ToDo_Deployment" />
+  <cleanup />
 </project>
 

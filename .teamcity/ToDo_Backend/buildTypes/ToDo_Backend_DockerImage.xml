@@ -34,7 +34,6 @@
     <build-extensions>
       <extension id="DockerSupport" type="DockerSupport">
         <parameters>
-          <param name="cleanupPushed" value="true" />
           <param name="login2registry" value="PROJECT_EXT_1087" />
           <param name="loginCheckbox" value="on" />
         </parameters>

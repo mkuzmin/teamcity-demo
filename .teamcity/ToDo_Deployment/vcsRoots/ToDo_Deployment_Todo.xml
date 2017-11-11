@@ -7,7 +7,7 @@
   <param name="branch" value="refs/heads/master" />
   <param name="ignoreKnownHosts" value="true" />
   <param name="submoduleCheckout" value="CHECKOUT" />
-  <param name="teamcitySshKey" value="docker-demo" />
+  <param name="teamcitySshKey" value="github mkuzmin" />
   <param name="url" value="git@github.com:mkuzmin/teamcity-demo.git" />
   <param name="useAlternates" value="true" />
   <param name="usernameStyle" value="FULL" />

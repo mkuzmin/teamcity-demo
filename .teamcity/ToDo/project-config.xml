@@ -29,6 +29,9 @@
         <param name="keepDays.count" value="7" />
       </parameters>
     </policy>
+    <options>
+      <option name="preventDependenciesArtifactsFromCleanup" value="true" />
+    </options>
   </cleanup>
   <subprojectsOrder order="ToDo_Backend,ToDo_Frontend,ToDo_Tests,ToDo_Deployment" />
 </project>

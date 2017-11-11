@@ -22,7 +22,20 @@
       </parameters>
     </extension>
   </project-extensions>
-  <cleanup />
+  <cleanup>
+    <policy type="daysAndBuilds" cleanup-level="HISTORY_ENTRY">
+      <parameters>
+        <param name="keepBuilds.count" value="10" />
+        <param name="keepDays.count" value="7" />
+      </parameters>
+    </policy>
+    <policy type="daysAndBuilds" cleanup-level="ARTIFACTS">
+      <parameters>
+        <param name="keepBuilds.count" value="10" />
+        <param name="keepDays.count" value="7" />
+      </parameters>
+    </policy>
+  </cleanup>
   <subprojectsOrder order="ToDo_Backend,ToDo_Frontend,ToDo_Tests,ToDo_Deployment" />
 </project>
 

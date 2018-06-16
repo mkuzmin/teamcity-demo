@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" parent-id="ToDo" uuid="ee53cbf7-2ce8-4e71-92a6-41d236f66925" xsi:noNamespaceSchemaLocation="http://www.jetbrains.com/teamcity/schemas/2017.2/project-config.xsd">
-  <name>Tests</name>
-  <parameters />
-  <cleanup />
-</project>
-

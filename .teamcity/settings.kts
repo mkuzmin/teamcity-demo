@@ -31,9 +31,11 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 'Debug' option is available in the context menu for the task.
 */
 
-version = "2017.2"
+version = "2018.1"
 
 project {
+
+    vcsRoot(Todo)
 
     features {
         dockerRegistry {
@@ -52,6 +54,15 @@ project {
     subProject(Tests)
 }
 
+object Todo : GitVcsRoot({
+    name = "todo"
+    url = "git@github.com:mkuzmin/teamcity-demo.git"
+    authMethod = uploadedKey {
+        userName = "git"
+        uploadedKey = "docker-demo"
+    }
+})
+
 
 object Backend : Project({
     name = "Backend"
@@ -66,7 +77,7 @@ object Backend_Build : BuildType({
     artifactRules = "backend/build/libs/todo.jar"
 
     vcs {
-        root(DslContext.settingsRoot, "+:backend/", "+:gradle", "+:build.gradle", "+:settings.gradle", "+:gradlew")
+        root(Todo, "+:backend/", "+:gradle", "+:build.gradle", "+:settings.gradle", "+:gradlew")
     }
 
     steps {
@@ -90,7 +101,7 @@ object Backend_DockerImage : BuildType({
     buildNumberPattern = "${Backend_Build.depParamRefs.buildNumber}"
 
     vcs {
-        root(DslContext.settingsRoot, "+:backend/Dockerfile")
+        root(Todo, "+:backend/Dockerfile")
     }
 
     steps {
@@ -189,7 +200,7 @@ object Frontend_BuildDockerImage : BuildType({
     name = "Docker Image"
 
     vcs {
-        root(DslContext.settingsRoot, "+:frontend => .")
+        root(Todo, "+:frontend => .")
     }
 
     steps {
@@ -243,7 +254,7 @@ object SeleniumTests : BuildType({
     }
 
     vcs {
-        root(DslContext.settingsRoot, "+:tests => .")
+        root(Todo, "+:tests => .")
     }
 
     steps {

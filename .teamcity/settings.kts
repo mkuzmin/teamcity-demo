@@ -87,12 +87,6 @@ object Backend_Build : BuildType({
             dockerRunParameters = "-v gradle:/root/.gradle/"
         }
     }
-
-    features {
-        freeDiskSpace {
-            failBuild = false
-        }
-    }
 })
 
 object Backend_DockerImage : BuildType({

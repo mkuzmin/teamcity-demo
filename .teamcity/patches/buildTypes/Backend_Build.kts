@@ -1,6 +1,8 @@
 package patches.buildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.GradleBuildStep
+import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.v2018_1.ui.*
 
 /*
@@ -13,4 +15,25 @@ changeBuildType(RelativeId("Backend_Build")) {
         "Unexpected paused: '$paused'"
     }
     paused = true
+
+    expectSteps {
+        gradle {
+            tasks = "clean :backend:build"
+            dockerImage = "openjdk:8u131-jdk-alpine"
+            dockerRunParameters = "-v gradle:/root/.gradle/"
+        }
+    }
+    steps {
+        update<GradleBuildStep>(0) {
+            clearConditions()
+            buildFile = "build.gradle"
+            param("teamcity.tool.jacoco", "")
+        }
+    }
+
+    requirements {
+        add {
+            equals("docker.server.osType", "linux")
+        }
+    }
 }
